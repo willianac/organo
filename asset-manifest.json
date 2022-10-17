@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/organo/static/css/main.db4daa1f.css",
+    "main.js": "/organo/static/js/main.4e5442b6.js",
+    "static/media/ball2.png": "/organo/static/media/ball2.39b45d5dd46dd853583a.png",
+    "index.html": "/organo/index.html",
+    "main.db4daa1f.css.map": "/organo/static/css/main.db4daa1f.css.map",
+    "main.4e5442b6.js.map": "/organo/static/js/main.4e5442b6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db4daa1f.css",
+    "static/js/main.4e5442b6.js"
+  ]
+}
