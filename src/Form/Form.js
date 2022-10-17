@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TextField from "../TextField/TextField";
-import React from "react";
+import Dropdown from "../Dropdown/Dropdown";
+import React, { useState } from "react";
 
 const FormText = styled.h1 `
     font-family : Arial;
@@ -17,7 +18,6 @@ const FormDiv = styled.div `
     align-items : center;
     border-radius : 6px;
     box-shadow : 8px 8px 16px rgba(0,0,0,0.08);
-    position : relative;
 `
 const FormWrapper = styled.form `
     width : 80%;
@@ -31,19 +31,39 @@ const FormButton =  styled.button `
     border : none;
     color : white;
     font : bold 16px Helvetica;
+    margin-top : 18px;
+    &:hover {
+        background-color: #067bda;
+      }
 `
 
+const Form = ( { onPlayerCreated }) => {
 
-const Form = ({inputHandler, submitHandler}) => {
+    const [name, setName] = useState('')
+    const [image, setImage] = useState('')
+    const [position, setPosition] = useState('')
+
+    const createPlayer = () => {
+        if(!name || !image || !position) return alert('Preencha com os dados necessários.')
+        const player = {  
+            name : name,
+            image : image,
+            position : position
+        }
+        onPlayerCreated(player)
+        setName('')
+        setImage('')
+    }
+
     return (
         <FormDiv>
             <FormText>Preencha os dados corretamente para inserir o jogador</FormText>
-           <FormWrapper >
-                <TextField name={'Nome'} placeholder={'Digite seu nome'} input={inputHandler[0]}/>
-                <TextField name={'Posição'} placeholder={'Digite a posição'} input={inputHandler[1]}/>
-                <TextField name={'Foto'} placeholder={'Digite o endereço da imagem'} input={inputHandler[2]}/>
-           </FormWrapper>
-           <FormButton onClick={submitHandler}>Enviar</FormButton>
+            <FormWrapper>
+                <TextField value={name} name={'Nome'} placeholder={'Digite o nome do jogador'} inputChange={(value => setName(value))}/>
+                <TextField value={image} name={'Imagem'} placeholder={'Digite a URL da imagem'} inputChange={(value => setImage(value))}/>
+                <Dropdown name={'Posição'} inputChange={(value) => setPosition(value)}/>
+            </FormWrapper>
+            <FormButton onClick={createPlayer}>Enviar</FormButton>
         </FormDiv>
     )  
 }

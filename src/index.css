@@ -4,27 +4,22 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  position: relative;
 }
 
 html {
-  height: 100%;
-  display: block;
-  position: relative;
+  min-height: 100%;
 }
 
 body {
-  display: block;
-  position: relative;
-
+  min-height: 100%;
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  background-repeat: repeat;
   font-family: Gemunu Libre,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #21D4FD;
-  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
-  height : 100%;
 }
 
 code {

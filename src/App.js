@@ -1,9 +1,12 @@
 import React from 'react';
+
 import Banner from './Banner/Banner';
 import Form from './Form/Form';
-import "./App.css"
+import Team from './Team/Team';
+import { Positions } from './Positions/Positions';
+
 import styled from 'styled-components';
-import Card from './Card/Card';
+import "./App.css"
 
 const MainText = styled.h1 `
   inline-size: 35%;
@@ -17,40 +20,32 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      nameInput : '',
-      positionInput : '',
-      imageInput : '',
-      imageUrl  : ''
+      players : []
     }
   }
 
-  handleNameInput = (event) => {
-    const name = event.target.value
-    this.setState({nameInput : name}, () => console.log(this.state.nameInput))
+  insertPlayer = (player) => {
+    this.setState({players : [...this.state.players, player]})
   }
-
-  handlePositionInput = (event) => {
-    const position = event.target.value
-    this.setState({positionInput : position}, ()=> console.log(this.state.positionInput))
-  }
-
-  handleImgInput = (event) => {
-    const image = event.target.value
-    this.setState({imageInput : image}, ()=> console.log(this.state.imageInput))
-  }
-
-  handleSubmit = () => {
-    this.setState({imageUrl : this.state.imageInput})
-  }
+  
   render () {
     return (
       <div className='conteiner'>
         <Banner />
         <div className='formConteiner'>
-          <Form inputHandler={[this.handleNameInput, this.handlePositionInput, this.handleImgInput]} submitHandler={this.handleSubmit}/>
-          <MainText>Lorem Ipsum is simply dummy text of the </MainText>
+          <Form onPlayerCreated={this.insertPlayer}/>
+          <MainText>Monta tua seleção ai, pae!</MainText>
         </div>
-        <Card imag={this.state.imageInput}/>
+        {Positions.map((position) =>  (position.position !== 'Selecione') ? <Team 
+          key={position.position} 
+          bg={position.primaryColor} 
+          borderColor={position.secondaryColor} 
+          positionName={position.position} 
+          players={this.state.players.filter((player) => player.position === position.position)} 
+          />  
+          : 
+          ''
+          )}
       </div>
     );
   }

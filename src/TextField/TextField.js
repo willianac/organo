@@ -15,18 +15,19 @@ const TextInput = styled.input `
 `
 
 const TextLabel = styled.label `
-   display : block;
-   position : relative;
    color : #100e0e;
    font-size : 24px;
    margin-bottom : 5px; 
 `
 
 const TextField = (props) => {
+    const inputTyping = (event) => {
+        props.inputChange(event.target.value)
+    }
     return (
         <TextWrapper>
             <TextLabel>{props.name}</TextLabel>
-            <TextInput placeholder={props.placeholder} onChange={props.input}/>
+            <TextInput value={props.value} required placeholder={props.placeholder} onChange={inputTyping}/>
         </TextWrapper>
     )
 }
