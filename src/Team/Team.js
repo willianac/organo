@@ -24,14 +24,21 @@ const TeamGroup = styled.div `
     margin-top 28px;
 `
 
-const Team = ({ bg, borderColor, positionName, players }) => {
+const Team = ({ bg, borderColor, positionName, players, delAction }) => {
+
     return ( 
         players.length > 0 ?
         <div>
              <TeamConteiner bg={bg}>
                 <TeamName borderColor={borderColor}>{positionName}</TeamName>
                 <TeamGroup>
-                    {players.map((player) => <PlayerCard name={player.name} image={player.image} position={player.position} key={player.name}/>)}
+                    {players.map((player, index) => 
+                        <PlayerCard 
+                            name={player.name} 
+                            image={player.image}
+                            key={index}
+                            del={delAction}
+                        />)}
                 </TeamGroup>
             </TeamConteiner>
         </div>

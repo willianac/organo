@@ -28,6 +28,11 @@ class App extends React.Component {
     this.setState({players : [...this.state.players, player]})
   }
   
+  removePlayer = (delPlayer) => {
+    let filteredPlayers = this.state.players.filter(player => player.name !== delPlayer)
+    this.setState({players : filteredPlayers})
+  }
+
   render () {
     return (
       <div className='conteiner'>
@@ -41,7 +46,8 @@ class App extends React.Component {
           bg={position.primaryColor} 
           borderColor={position.secondaryColor} 
           positionName={position.position} 
-          players={this.state.players.filter((player) => player.position === position.position)} 
+          players={this.state.players.filter((player) => player.position === position.position)}
+          delAction={this.removePlayer} 
           />  
           : 
           ''

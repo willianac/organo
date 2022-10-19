@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Fragment } from "react"
 import { Positions } from "../Positions/Positions"
 
 const Label = styled.label `
@@ -23,14 +24,14 @@ const Dropdown = (props) => {
     }
 
     return (
-        <div>
+       <>
             <Label>{props.name}</Label>
-             <Select onChange={inputOption}>
+            <Select onChange={inputOption}>
                 {Positions.map((position) => {
                     return <option value={position.position} key={position.position}>{position.position}</option>
                 })}
             </Select>
-        </div>
+       </>
     )
 }
 export default Dropdown;

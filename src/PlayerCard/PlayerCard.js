@@ -10,35 +10,60 @@ const Card = styled.section `
 
 const CardHead = styled.div `
     height : 40%;
-    background-color : #ffffa6;
+    background-color : #0077ff;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 `
 const CardFoot = styled.div `
     height : 60%;
-    background-color : #f3f3f3;
-    font : normal 22px Tahoma;
-    color : #cc77dd;
+    background-color : #ffffff;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 `
 
-const CardImg = styled.img `
-    display : block;
-    margin : 3px auto 0px auto;
-    border-radius : 50%;
-    width : 95px;
-    height : 95px
+const CardDelete = styled.span `
+    position : relative;
+    top : 1px;
+    left : 88px;
+    font : bold 35px Arial;
+    cursor : pointer;
+    &:hover {
+        color: red;
+      }
 `
 
-const PlayerCard = ({ name, image }) => {
+const CardImg = styled.img `
+    display : block;
+    position : relative;
+    margin : 22px auto 0px auto;
+    border-radius : 50%;
+    width : 100px;
+    height : 100px;
+    border : 5px solid white;
+`
+
+const CardName = styled.h2 `
+    font : normal 22px Tahoma;
+    color : #cc77dd;
+    margin-top : 52px;
+`
+
+const PlayerCard = ({ name, image, del }) => {
+    
+    const deleteCard = (player) => {
+        del(player.target.id)
+    }
+
     return (
-            <Card>
-                <CardHead>
-                    <CardImg src={image}/> 
-                </CardHead>
-                <CardFoot>{name}</CardFoot>
-            </Card>
+        <Card>
+            <CardHead>
+                <CardDelete id={name} onClick={deleteCard}>×</CardDelete>
+                <CardImg src={image}/> 
+            </CardHead>
+            <CardFoot>
+                <CardName>{name}</CardName>
+            </CardFoot>
+        </Card>
     )
 }
 
